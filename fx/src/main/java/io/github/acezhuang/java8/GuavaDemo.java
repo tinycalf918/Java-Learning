@@ -26,7 +26,7 @@ public class GuavaDemo {
     }
 
     public static void testEventBus(){
-        bus.post(new AEvent(11));
+        bus.post(new BEvent(12));
     }
 
     private static void testMap(){
@@ -51,8 +51,19 @@ public class GuavaDemo {
         private int id;
     }
 
+    @Data
+    @AllArgsConstructor
+    public static class BEvent{
+        private int id;
+    }
+
     @Subscribe
-    public void handle(AEvent aEvent){
-        System.out.println(Thread.currentThread().getName() + " " + aEvent.getId());
+    public void handle1(BEvent bEvent){
+        System.out.println(Thread.currentThread().getName() + " " + bEvent.getId());
+    }
+
+    @Subscribe
+    public void handle(BEvent bEvent){
+        System.out.println(Thread.currentThread().getName() + " " + bEvent.getId());
     }
 }
