@@ -30,10 +30,11 @@ public class RpcfxClientApplication implements ApplicationContextAware {
 	private static ApplicationContext applicationContext = null;
 
 	public static void main(String[] args) {
-
+		SpringApplication.run(RpcfxClientApplication.class, args);
 		// UserService service = new xxx();
+		UserService userService = applicationContext.getBean(UserService.class);
 		// service.findById
-		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
+//		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
 		User user = userService.findById(1);
 //		System.out.println("find user id=1 from server: " + user.getName());
 
